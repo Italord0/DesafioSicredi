@@ -1,10 +1,10 @@
-package com.example.desafiosicredi.data.source
+package com.example.desafiosicredi.data.api
 
 import com.example.desafiosicredi.data.model.Event
 import retrofit2.http.GET
 import retrofit2.http.Path
 
-interface EventsDataSource {
+interface EventsApiService {
     @GET("events")
     suspend fun getEvents(): List<Event>
 

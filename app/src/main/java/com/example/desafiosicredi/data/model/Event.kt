@@ -1,10 +1,8 @@
 package com.example.desafiosicredi.data.model
 
-import java.util.Date
-
 data class Event(
     val people: List<String>,
-    val date: Date,
+    val date: Long,
     val description: String,
     val image: String,
     val longitude: Double,

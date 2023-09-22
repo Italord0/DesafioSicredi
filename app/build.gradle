@@ -67,6 +67,7 @@ dependencies {
     //hilt
     implementation dagger_hilt
     kapt dagger_hilt_compiler
+    implementation hilt_navigation_compose
 
     //compose
     implementation platform(compose_bom)
@@ -75,6 +76,7 @@ dependencies {
     implementation compose_ui_preview
     implementation compose_material
     implementation activity_compose
+    implementation compose_navigation
 
     //retrofit
     implementation retrofit
@@ -85,7 +87,6 @@ dependencies {
     implementation coil_compose
 }
 
-// Allow references to generated code
 kapt {
     correctErrorTypes true
 }

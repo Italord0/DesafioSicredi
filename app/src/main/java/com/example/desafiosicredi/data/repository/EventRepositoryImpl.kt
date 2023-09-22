@@ -1,16 +1,16 @@
 package com.example.desafiosicredi.data.repository
 
-import com.example.desafiosicredi.data.source.EventsDataSource
+import com.example.desafiosicredi.data.api.EventsApiService
 import javax.inject.Inject
 
 class EventRepositoryImpl @Inject constructor(
-    private val eventsDataSource: EventsDataSource
+    private val eventsApiService: EventsApiService
 ) : EventRepository {
     override suspend fun getEvents() {
-        eventsDataSource.getEvents()
+        eventsApiService.getEvents()
     }
 
     override suspend fun getEventById(id: String) {
-        eventsDataSource.getEventById(id)
+        eventsApiService.getEventById(id)
     }
 }
