@@ -1,9 +1,23 @@
 package com.example.desafiosicredi.ui.features.home
 
+import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.lazy.LazyColumn
+import androidx.compose.foundation.lazy.itemsIndexed
+import androidx.compose.material.Scaffold
+import androidx.compose.material.Text
+import androidx.compose.material.TopAppBar
+import androidx.compose.material.rememberScaffoldState
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.remember
+import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.res.stringResource
+import androidx.compose.ui.tooling.preview.Preview
 import androidx.hilt.navigation.compose.hiltViewModel
-import com.example.desafiosicredi.data.model.Event
+import com.example.desafiosicredi.R
 import com.example.desafiosicredi.nav.NavRoute
+import com.example.desafiosicredi.ui.composables.EventCard
 
 object HomeRoute : NavRoute<HomeViewModel> {
     override val route: String
@@ -13,13 +27,45 @@ object HomeRoute : NavRoute<HomeViewModel> {
     override fun viewModel(): HomeViewModel = hiltViewModel()
 
     @Composable
-    override fun Content(viewModel: HomeViewModel) = Home(viewModel::onEventClicked)
+    override fun Content(viewModel: HomeViewModel) = Home()
 
 }
 
 @Composable
 private fun Home(
-    onEventClicked: (event: Event) -> Unit,
+    viewModel: HomeViewModel = hiltViewModel()
 ) {
+    val scaffoldState = rememberScaffoldState()
+    val events = remember { viewModel.events }
 
+    Scaffold(
+        scaffoldState = scaffoldState,
+        topBar = {
+            TopAppBar(
+                title = {
+                    Text(text = stringResource(id = R.string.app_name))
+                },
+                backgroundColor = Color.White,
+                contentColor = Color.Black
+            )
+        },
+        content = { paddingValues ->
+            Column(
+                modifier = Modifier.padding(paddingValues)
+            ) {
+                LazyColumn {
+                    itemsIndexed(events.value) { _, event ->
+                        EventCard(event = event, onEventClicked = { })
+                    }
+                }
+            }
+        }
+    )
+}
+
+@Preview
+@Composable
+fun HomePreview() {
+    val viewModel = MockHomeViewModel()
+    Home(viewModel = viewModel)
 }
