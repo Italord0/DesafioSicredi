@@ -1,0 +1,18 @@
+ext {
+    min_version = 21
+    compile_version = 33
+    build_tools_version = "30.0.3"
+
+    core_ktx = "androidx.core:core-ktx:1.12.0"
+    lifecycle_ktx = "androidx.lifecycle:lifecycle-runtime-ktx:2.6.2"
+    activity_compose = "androidx.activity:activity-compose:1.7.2"
+    compose_bom = "androidx.compose:compose-bom:2023.03.00"
+    compose_ui = "androidx.compose.ui:ui"
+    compose_ui_graphics = "androidx.compose.ui:ui-graphics"
+    compose_ui_preview = "androidx.compose.ui:ui-tooling-preview"
+    compose_material = "androidx.compose.material3:material3"
+    dagger_hilt = "com.google.dagger:hilt-android:2.44"
+    dagger_hilt_compiler = "com.google.dagger:hilt-compiler:2.44"
+    retrofit = "com.squareup.retrofit2:retrofit:2.9.0"
+    coil_compose = "io.coil-kt:coil-compose:2.4.0"
+}

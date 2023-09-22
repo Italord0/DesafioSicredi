@@ -1,0 +1,89 @@
+plugins {
+    id 'com.android.application'
+    id 'org.jetbrains.kotlin.android'
+    id 'kotlin-kapt'
+    id 'com.google.dagger.hilt.android'
+}
+
+apply from: rootProject.projectDir.absolutePath + "/dependencies.gradle"
+
+android {
+    namespace 'com.example.desafiosicredi'
+    compileSdk compile_version
+
+    defaultConfig {
+        applicationId "com.example.desafiosicredi"
+        minSdk min_version
+        targetSdk compile_version
+        versionCode 1
+        versionName "1.0"
+
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+        vectorDrawables {
+            useSupportLibrary true
+        }
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+    }
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+    kotlinOptions {
+        jvmTarget = '1.8'
+    }
+    buildFeatures {
+        compose true
+    }
+    composeOptions {
+        kotlinCompilerExtensionVersion '1.4.3'
+    }
+    packaging {
+        resources {
+            excludes += '/META-INF/{AL2.0,LGPL2.1}'
+        }
+    }
+}
+
+dependencies {
+
+    //ktx
+    implementation core_ktx
+    implementation lifecycle_ktx
+
+    testImplementation 'junit:junit:4.13.2'
+    androidTestImplementation 'androidx.test.ext:junit:1.1.5'
+    androidTestImplementation 'androidx.test.espresso:espresso-core:3.5.1'
+    androidTestImplementation platform('androidx.compose:compose-bom:2023.03.00')
+    androidTestImplementation 'androidx.compose.ui:ui-test-junit4'
+    debugImplementation 'androidx.compose.ui:ui-tooling'
+    debugImplementation 'androidx.compose.ui:ui-test-manifest'
+
+    //hilt
+    implementation dagger_hilt
+    kapt dagger_hilt_compiler
+
+    //compose
+    implementation platform(compose_bom)
+    implementation compose_ui
+    implementation compose_ui_graphics
+    implementation compose_ui_preview
+    implementation compose_material
+    implementation activity_compose
+
+    //retrofit
+    implementation retrofit
+
+    //coil compose
+    implementation coil_compose
+}
+
+// Allow references to generated code
+kapt {
+    correctErrorTypes true
+}
