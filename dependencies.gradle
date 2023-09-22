@@ -15,4 +15,6 @@ ext {
     dagger_hilt_compiler = "com.google.dagger:hilt-compiler:2.44"
     retrofit = "com.squareup.retrofit2:retrofit:2.9.0"
     coil_compose = "io.coil-kt:coil-compose:2.4.0"
+    retrofit_converter = "com.squareup.retrofit2:converter-gson:2.9.0"
+    logging_interceptor = "com.squareup.okhttp3:logging-interceptor:4.9.0"
 }

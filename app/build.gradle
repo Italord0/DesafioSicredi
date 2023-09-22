@@ -78,6 +78,8 @@ dependencies {
 
     //retrofit
     implementation retrofit
+    implementation retrofit_converter
+    implementation logging_interceptor
 
     //coil compose
     implementation coil_compose
