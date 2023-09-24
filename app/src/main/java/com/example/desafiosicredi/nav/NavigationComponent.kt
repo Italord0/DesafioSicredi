@@ -6,6 +6,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
+import com.example.desafiosicredi.ui.features.detais.DetailsRoute
 import com.example.desafiosicredi.ui.features.home.HomeRoute
 
 @Composable
@@ -17,5 +18,6 @@ fun NavigationComponent(navHostController: NavHostController, paddingValues: Pad
     ) {
         // routes
         HomeRoute.composable(this, navHostController)
+        DetailsRoute.composable(this, navHostController)
     }
 }

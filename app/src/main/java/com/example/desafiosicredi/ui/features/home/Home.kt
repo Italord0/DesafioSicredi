@@ -1,5 +1,7 @@
 package com.example.desafiosicredi.ui.features.home
 
+import android.os.Bundle
+import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.LazyColumn
@@ -16,18 +18,20 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.hilt.navigation.compose.hiltViewModel
 import com.example.desafiosicredi.R
+import com.example.desafiosicredi.data.repository.MockEventRepository.Companion.eventMock
 import com.example.desafiosicredi.nav.NavRoute
 import com.example.desafiosicredi.ui.composables.EventCard
+import com.example.desafiosicredi.util.Colors
 
 object HomeRoute : NavRoute<HomeViewModel> {
     override val route: String
-        get() = "home/"
+        get() = "home"
 
     @Composable
     override fun viewModel(): HomeViewModel = hiltViewModel()
 
     @Composable
-    override fun Content(viewModel: HomeViewModel) = Home()
+    override fun Content(viewModel: HomeViewModel, args: Bundle?) = Home()
 
 }
 
@@ -43,7 +47,7 @@ private fun Home(
         topBar = {
             TopAppBar(
                 title = {
-                    Text(text = stringResource(id = R.string.app_name))
+                    Text(text = stringResource(id = R.string.events))
                 },
                 backgroundColor = Color.White,
                 contentColor = Color.Black
@@ -51,11 +55,22 @@ private fun Home(
         },
         content = { paddingValues ->
             Column(
-                modifier = Modifier.padding(paddingValues)
+                modifier = Modifier
+                    .padding(paddingValues)
+                    .background(Colors.LightestGray)
             ) {
                 LazyColumn {
-                    itemsIndexed(events.value) { _, event ->
-                        EventCard(event = event, onEventClicked = { })
+                    if (viewModel.loading.value) {
+                        items(5) {
+                            EventCard(
+                                event = eventMock,
+                                isLoading = true
+                            )
+                        }
+                    } else {
+                        itemsIndexed(events.value) { _, event ->
+                            EventCard(event = event, onEventClicked = viewModel::onEventClicked)
+                        }
                     }
                 }
             }
@@ -66,6 +81,6 @@ private fun Home(
 @Preview
 @Composable
 fun HomePreview() {
-    val viewModel = MockHomeViewModel()
+    val viewModel = PreviewHomeViewModel()
     Home(viewModel = viewModel)
 }

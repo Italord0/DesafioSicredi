@@ -77,14 +77,20 @@ dependencies {
     implementation compose_material
     implementation activity_compose
     implementation compose_navigation
+    implementation compose_constraint_layout
 
     //retrofit
     implementation retrofit
     implementation retrofit_converter
     implementation logging_interceptor
 
-    //coil compose
+    //coil
+    implementation coil
     implementation coil_compose
+    implementation coil_landscaptis
+
+    //accompanist
+    implementation accompanist_placeholder
 }
 
 kapt {

@@ -1,6 +1,8 @@
 package com.example.desafiosicredi.data.model
 
+import java.text.NumberFormat
 import java.text.SimpleDateFormat
+import java.util.Currency
 import java.util.Date
 import java.util.Locale
 
@@ -18,7 +20,14 @@ data class Event(
     val formattedDate: String
         get() {
             val date = Date(date)
-            val format = SimpleDateFormat("dd/MM/yyyy", Locale.getDefault())
+            val format = SimpleDateFormat("dd/MM/yyyy HH:mm", Locale.getDefault())
             return format.format(date)
+        }
+
+    val formattedPrice: String
+        get() {
+            val currencyFormat = NumberFormat.getCurrencyInstance(Locale("pt", "BR"))
+            currencyFormat.currency = Currency.getInstance("BRL")
+            return currencyFormat.format(price)
         }
 }

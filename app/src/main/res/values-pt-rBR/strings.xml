@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">DesafioSicredi</string>
+    <string name="events">Eventos</string>
+    <string name="events_detail">Detalhe dos eventos</string>
+    <string name="back">Voltar</string>
+</resources>

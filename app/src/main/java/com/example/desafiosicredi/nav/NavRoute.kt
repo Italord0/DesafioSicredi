@@ -1,5 +1,6 @@
 package com.example.desafiosicredi.nav
 
+import android.os.Bundle
 import android.util.Log
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
@@ -16,7 +17,7 @@ interface NavRoute<T : RouteNavigator> {
     val route: String
 
     @Composable
-    fun Content(viewModel: T)
+    fun Content(viewModel: T, args: Bundle?)
 
     @Composable
     fun viewModel(): T
@@ -36,7 +37,7 @@ interface NavRoute<T : RouteNavigator> {
                 updateNavigationState(navHostController, viewStateAsState, viewModel::onNavigated)
             }
 
-            Content(viewModel)
+            Content(viewModel, it.arguments)
         }
     }
 
@@ -50,21 +51,19 @@ interface NavRoute<T : RouteNavigator> {
                 navHostController.navigate(navigationState.route)
                 onNavigated(navigationState)
             }
+
             is NavigationState.PopToRoute -> {
                 navHostController.popBackStack(navigationState.staticRoute, false)
                 onNavigated(navigationState)
             }
+
             is NavigationState.NavigateUp -> {
                 navHostController.navigateUp()
                 onNavigated(navigationState)
             }
+
             is NavigationState.Idle -> {
             }
         }
     }
 }
-
-fun <T> SavedStateHandle.getOrThrow(key: String): T =
-    get<T>(key) ?: throw IllegalArgumentException(
-        "Mandatory argument $key missing in arguments."
-    )
