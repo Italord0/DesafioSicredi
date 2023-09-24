@@ -4,7 +4,7 @@ import android.os.Bundle
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.verticalScroll
-import androidx.compose.material.Button
+import androidx.compose.material.Divider
 import androidx.compose.material.Scaffold
 import androidx.compose.material.Text
 import androidx.compose.material.TopAppBar
@@ -14,7 +14,6 @@ import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.stringResource
-import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.constraintlayout.compose.ConstraintLayout
@@ -23,6 +22,7 @@ import androidx.hilt.navigation.compose.hiltViewModel
 import com.example.desafiosicredi.R
 import com.example.desafiosicredi.nav.NavRoute
 import com.example.desafiosicredi.ui.composables.BackButton
+import com.example.desafiosicredi.ui.composables.CheckInFormComposable
 import com.example.desafiosicredi.ui.composables.MessageDialog
 import com.skydoves.landscapist.coil.CoilImage
 
@@ -63,7 +63,7 @@ private fun Details(
                 .padding(paddingValues)
                 .verticalScroll(rememberScrollState())
         ) {
-            val (eventTitle, eventDescription, eventDateAndPrice, eventImage, checkInButton) = createRefs()
+            val (eventTitle, eventDescription, eventDate, eventPrice, divider, eventImage, checkInForm) = createRefs()
 
             CoilImage(modifier = Modifier.constrainAs(eventImage) {
                 top.linkTo(parent.top)
@@ -78,40 +78,59 @@ private fun Details(
                     width = Dimension.fillToConstraints
                 },
                 text = event.value?.title ?: "",
-                style = TextStyle.Default.copy(fontSize = 28.sp)
+                fontSize = 28.sp
             )
 
             Text(
-                modifier = Modifier.constrainAs(eventDateAndPrice) {
+                modifier = Modifier.constrainAs(eventDate) {
+                    top.linkTo(eventTitle.bottom, 16.dp)
+                    start.linkTo(parent.start, 16.dp)
+                    width = Dimension.wrapContent
+                },
+                text = event.value?.formattedDate ?: "",
+                fontSize = 24.sp
+            )
+
+            Text(
+                modifier = Modifier.constrainAs(eventPrice) {
                     top.linkTo(eventTitle.bottom, 16.dp)
                     end.linkTo(parent.end, 16.dp)
-                    start.linkTo(parent.start, 16.dp)
-                    width = Dimension.fillToConstraints
+                    width = Dimension.wrapContent
                 },
-                text = "${event.value?.formattedDate ?: ""} ${event.value?.formattedPrice}",
-                style = TextStyle.Default.copy(fontSize = 24.sp)
+                text = event.value?.formattedPrice ?: "",
+                fontSize = 24.sp
             )
 
             Text(
                 modifier = Modifier.constrainAs(eventDescription) {
-                    top.linkTo(eventDateAndPrice.bottom, 16.dp)
+                    top.linkTo(eventDate.bottom, 16.dp)
                     end.linkTo(parent.end, 16.dp)
                     start.linkTo(parent.start, 16.dp)
                     width = Dimension.fillToConstraints
                 },
                 text = event.value?.description ?: "",
-                style = TextStyle.Default.copy(fontSize = 20.sp)
+                fontSize = 20.sp
             )
-            Button(
-                modifier = Modifier.constrainAs(checkInButton) {
+
+            Divider(
+                modifier = Modifier.constrainAs(divider) {
                     top.linkTo(eventDescription.bottom, 16.dp)
-                    end.linkTo(parent.end, 32.dp)
-                    start.linkTo(parent.start, 32.dp)
+                    start.linkTo(parent.start, 16.dp)
+                    end.linkTo(parent.end, 16.dp)
                     width = Dimension.fillToConstraints
+                }
+            )
+
+            CheckInFormComposable(
+                modifier = Modifier.constrainAs(checkInForm) {
+                    top.linkTo(divider.bottom, 16.dp)
+                    start.linkTo(parent.start, 16.dp)
+                    end.linkTo(parent.end, 16.dp)
                 },
-                onClick = { viewModel.doCheckIn(event.value?.id ?: "") }) {
-                Text(text = "Check-In")
-            }
+                onFormCompleted = { name, email ->
+                    viewModel.doCheckIn(name, email, event.value?.id ?: "")
+                }
+            )
         }
         if (viewModel.showCheckInDialog.value) {
             MessageDialog(title = "Alert", message = viewModel.checkInResult.value) {

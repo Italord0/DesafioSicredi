@@ -43,14 +43,14 @@ open class DetailsViewModel @Inject constructor(
         }
     }
 
-    fun doCheckIn(eventId: String) {
+    fun doCheckIn(name: String, email: String, eventId: String) {
         viewModelScope.launch {
             showCheckInDialog.value = false
             try {
                 val response = checkInRepository.doCheckIn(
                     eventId = eventId,
-                    name = "Test1",
-                    email = "test1@test.com"
+                    name = name,
+                    email = email
                 )
 
                 when (response) {
