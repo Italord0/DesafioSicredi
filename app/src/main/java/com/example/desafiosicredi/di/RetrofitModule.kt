@@ -70,7 +70,7 @@ class RetrofitModule {
 
     companion object {
         private const val BASE_URL = "https://5f5a8f24d44d640016169133.mockapi.io/api/"
-        private const val API_SICREDI_NAMED = "API_OPEN_WEATHER_NAMED"
+        private const val API_SICREDI_NAMED = "API_SICREDI_NAMED"
         const val RETROFIT_BASE_NAMED = "RETROFIT_BASE_NAMED"
     }
 }

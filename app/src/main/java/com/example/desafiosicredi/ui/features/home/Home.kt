@@ -18,7 +18,7 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.hilt.navigation.compose.hiltViewModel
 import com.example.desafiosicredi.R
-import com.example.desafiosicredi.data.repository.MockEventRepository.Companion.eventMock
+import com.example.desafiosicredi.data.repository.event.MockEventRepository.Companion.eventMock
 import com.example.desafiosicredi.nav.NavRoute
 import com.example.desafiosicredi.ui.composables.EventCard
 import com.example.desafiosicredi.util.Colors

@@ -1,9 +1,8 @@
-package com.example.desafiosicredi.data.repository
+package com.example.desafiosicredi.data.repository.event
 
 import com.example.desafiosicredi.data.api.EventsApiService
 import com.example.desafiosicredi.data.api.Response
 import com.example.desafiosicredi.data.model.Event
-import kotlinx.coroutines.delay
 import javax.inject.Inject
 
 class EventRepositoryImpl @Inject constructor(

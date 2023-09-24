@@ -6,7 +6,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.desafiosicredi.data.api.Response
 import com.example.desafiosicredi.data.model.Event
-import com.example.desafiosicredi.data.repository.EventRepository
+import com.example.desafiosicredi.data.repository.event.EventRepository
 import com.example.desafiosicredi.nav.RouteNavigator
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
