@@ -11,12 +11,12 @@ import com.example.desafiosicredi.data.repository.checkin.CheckInRepository
 import com.example.desafiosicredi.data.repository.event.EventRepository
 import com.example.desafiosicredi.nav.RouteNavigator
 import dagger.hilt.android.lifecycle.HiltViewModel
+import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 @HiltViewModel
 open class DetailsViewModel @Inject constructor(
-    savedStateHandle: SavedStateHandle,
     private val routeNavigator: RouteNavigator,
     private val eventRepository: EventRepository,
     private val checkInRepository: CheckInRepository
@@ -32,6 +32,7 @@ open class DetailsViewModel @Inject constructor(
             loading.value = true
             when (val response = eventRepository.getEventById(eventId)) {
                 is Response.Success -> {
+                    loading.value = false
                     event.value = response.data
                 }
 

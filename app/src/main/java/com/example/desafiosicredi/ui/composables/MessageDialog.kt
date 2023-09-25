@@ -1,6 +1,5 @@
 package com.example.desafiosicredi.ui.composables
 
-import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material.AlertDialog
@@ -9,9 +8,11 @@ import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import com.example.desafiosicredi.R
 
 @Composable
 fun MessageDialog(
@@ -38,7 +39,7 @@ fun MessageDialog(
                     .fillMaxWidth()
                     .padding(16.dp),
             ) {
-                Text(text = "OK", color = Color.White)
+                Text(text = stringResource(id = R.string.ok), color = Color.White)
             }
         }
     )

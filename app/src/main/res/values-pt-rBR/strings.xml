@@ -4,4 +4,11 @@
     <string name="events">Eventos</string>
     <string name="events_detail">Detalhe dos eventos</string>
     <string name="back">Voltar</string>
+    <string name="checkin">Check-in</string>
+    <string name="name">Nome</string>
+    <string name="email">E-Mail</string>
+    <string name="do_checkin">Realizar Check-in</string>
+    <string name="date">Data: %s</string>
+    <string name="ok">OK</string>
+    <string name="alert">Alerta</string>
 </resources>

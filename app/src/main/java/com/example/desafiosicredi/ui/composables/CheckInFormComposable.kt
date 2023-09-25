@@ -15,9 +15,11 @@ import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import com.example.desafiosicredi.R
 
 @Composable
 fun CheckInFormComposable(
@@ -35,7 +37,7 @@ fun CheckInFormComposable(
         modifier = modifier.padding(16.dp)
     ) {
 
-        Text(text = "Check-In", fontSize = 32.sp)
+        Text(text = stringResource(id = R.string.checkin), fontSize = 32.sp)
 
         OutlinedTextField(
             modifier = Modifier
@@ -48,7 +50,7 @@ fun CheckInFormComposable(
                     isNameValid = it.isNotBlank()
                 }
             },
-            label = { Text("Nome") },
+            label = { Text(stringResource(id = R.string.name)) },
             isError = !isNameValid,
             maxLines = 1
         )
@@ -64,7 +66,7 @@ fun CheckInFormComposable(
                     isEmailValid = EMAIL_ADDRESS.matcher(it).matches()
                 }
             },
-            label = { Text("Email") },
+            label = { Text(stringResource(id = R.string.email)) },
             isError = !isEmailValid,
             maxLines = 1
         )
@@ -78,7 +80,7 @@ fun CheckInFormComposable(
             },
             enabled = isNameValid && isEmailValid
         ) {
-            Text(text = "Check-In")
+            Text(text = stringResource(id = R.string.do_checkin))
         }
     }
 }

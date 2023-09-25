@@ -25,7 +25,7 @@ open class HomeViewModel @Inject constructor(
         fetchEvents()
     }
 
-    private fun fetchEvents() {
+    fun fetchEvents() {
         viewModelScope.launch {
             loading.value = true
             when (val response = eventRepository.getEvents()) {
